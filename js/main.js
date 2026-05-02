@@ -2,7 +2,7 @@
  * Waitlist — Formspree (free): https://formspree.io → New form → copy the id from /f/XXXXX
  * Paste only the id below (e.g. mqkorabc). Leave '' for demo mode (no server; UI only).
  */
-const FORMSPREE_FORM_ID = '';
+const FORMSPREE_FORM_ID = 'xojrvzaj';
 
 const btn = document.getElementById('formBtn');
 const input = document.getElementById('emailInput');
