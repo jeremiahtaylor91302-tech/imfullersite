@@ -12,7 +12,7 @@ const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
   const success = document.getElementById('formSuccess');
   const formError = document.getElementById('formError');
 
-  if (!form || !btn || !input || !pill || !success) return;
+  if (!form || !btn || !input) return;
 
   if (FORMSPREE_FORM_ID.trim()) {
     form.setAttribute('action', FORMSPREE_ENDPOINT);
@@ -41,19 +41,35 @@ const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
   }
 
   function showSuccessUI() {
+    const revealSuccess = () => {
+      btn.disabled = false;
+      btn.removeAttribute('aria-busy');
+      btn.textContent = defaultBtnLabel;
+      if (success) {
+        success.classList.add('show');
+        success.style.opacity = '0';
+        success.style.transform = 'translateY(8px)';
+        success.style.transition = 'all 0.4s ease';
+        requestAnimationFrame(() => {
+          success.style.opacity = '1';
+          success.style.transform = 'translateY(0)';
+        });
+      } else if (formError) {
+        formError.textContent = "Noted. We'll whisper when the room's ready.";
+        formError.removeAttribute('hidden');
+      }
+    };
+
+    if (!pill) {
+      revealSuccess();
+      return;
+    }
     pill.style.opacity = '0';
     pill.style.transform = 'translateY(-8px)';
     pill.style.transition = 'all 0.4s ease';
     setTimeout(() => {
       pill.style.display = 'none';
-      success.classList.add('show');
-      success.style.opacity = '0';
-      success.style.transform = 'translateY(8px)';
-      success.style.transition = 'all 0.4s ease';
-      requestAnimationFrame(() => {
-        success.style.opacity = '1';
-        success.style.transform = 'translateY(0)';
-      });
+      revealSuccess();
     }, 350);
   }
 
@@ -83,14 +99,31 @@ const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
   }
 
   function showInvalidEmail() {
-    pill.style.borderColor = 'var(--rosewood)';
+    if (pill) pill.style.borderColor = 'var(--rosewood)';
     input.style.color = 'var(--rosewood)';
     input.setAttribute('placeholder', 'That doesn’t look like an email');
     setTimeout(() => {
-      pill.style.borderColor = 'var(--oat)';
+      if (pill) pill.style.borderColor = 'var(--oat)';
       input.style.color = 'var(--ink)';
       input.setAttribute('placeholder', 'Your email');
     }, 2000);
+  }
+
+  function formspreeErrorMessage(data) {
+    if (!data || typeof data !== 'object') return null;
+    if (typeof data.error === 'string') return data.error;
+    const first = Array.isArray(data.errors) ? data.errors[0] : null;
+    if (first && typeof first.message === 'string') return first.message;
+    const fieldErrors = data.errors;
+    if (fieldErrors && typeof fieldErrors === 'object' && !Array.isArray(fieldErrors)) {
+      const key = Object.keys(fieldErrors)[0];
+      if (key) {
+        const v = fieldErrors[key];
+        const msg = Array.isArray(v) ? v[0] : v;
+        if (typeof msg === 'string') return msg;
+      }
+    }
+    return null;
   }
 
   form.addEventListener('submit', async (e) => {
@@ -126,22 +159,24 @@ const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
         const msg =
-          (data && data.error) ||
-          (data.errors && data.errors[0] && data.errors[0].message) ||
-          "Couldn't save that. Try again.";
-        throw new Error(typeof msg === 'string' ? msg : "Couldn't save that. Try again.");
+          formspreeErrorMessage(data) || "Couldn't save that. Try again.";
+        throw new Error(msg);
       }
 
       onWaitlistSuccess();
-    } catch {
-      showError("Couldn't save that. Try again in a moment.");
+    } catch (err) {
+      const fallback = "Couldn't save that. Try again in a moment.";
+      const isNetwork =
+        err instanceof TypeError ||
+        (err instanceof Error &&
+          (err.message === 'Failed to fetch' || err.message === 'Load failed'));
+      const message =
+        err instanceof Error && err.message && !isNetwork ? err.message : fallback;
+      showError(message);
       btn.disabled = false;
       btn.removeAttribute('aria-busy');
       btn.textContent = defaultBtnLabel;
       return;
     }
-
-    btn.removeAttribute('aria-busy');
-    btn.textContent = defaultBtnLabel;
   });
 })();

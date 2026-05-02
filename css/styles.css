@@ -168,8 +168,11 @@ a.nav-wordmark {
   opacity: 0;
   animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
 }
+/* Avoid display:contents on <form> — it breaks submit / default submission in several browsers. */
 .waitlist-form {
-  display: contents;
+  display: block;
+  width: 100%;
+  margin: 0;
 }
 .form-pill {
   display: flex;
