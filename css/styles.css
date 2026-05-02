@@ -3,7 +3,6 @@
 :root {
   --ivory: #FDFAF5;
   --warm-white: #F8F4ED;
-  --linen: #EDE6DA;
   --oat: #DDD4C4;
   --stone: #C4B8A6;
   --driftwood: #9A8E7E;
@@ -278,44 +277,27 @@ a.nav-wordmark {
   background: var(--ivory);
   border: 1px solid var(--oat);
   border-radius: 16px;
-  display: grid;
-  grid-template-columns: 260px 1fr;
   overflow: hidden;
   transition: box-shadow 0.4s;
 }
 .story-card:hover {
   box-shadow: 0 12px 48px rgba(42, 37, 32, 0.06);
 }
-.story-visual {
-  position: relative;
-  min-height: 240px;
-  background:
-    radial-gradient(ellipse at 30% 60%, rgba(196, 132, 110, 0.5) 0%, transparent 60%),
-    radial-gradient(ellipse at 75% 30%, rgba(122, 148, 112, 0.3) 0%, transparent 50%),
-    linear-gradient(160deg, var(--linen) 0%, var(--oat) 50%, var(--walnut) 100%);
-  overflow: hidden;
-}
-.story-visual::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 40% 50%, rgba(255,255,255,0.12) 0%, transparent 50%);
-}
 .story-tag {
-  position: absolute;
-  top: 16px;
-  left: 16px;
+  display: inline-block;
+  align-self: flex-start;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(253, 250, 245, 0.9);
-  background: rgba(42, 37, 32, 0.25);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  color: rgba(253, 250, 245, 0.92);
+  background: rgba(42, 37, 32, 0.78);
+  border: 1px solid rgba(42, 37, 32, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: 6px 14px;
   border-radius: 100px;
-  z-index: 2;
+  margin-bottom: 18px;
 }
 .story-body {
   padding: 40px 36px;
@@ -516,8 +498,6 @@ body.waitlist-prank {
   .nav-link { display: none; }
   .hero { padding: 52px 24px 56px; }
   .story-section { padding: 44px 24px 36px; }
-  .story-card { grid-template-columns: 1fr; }
-  .story-visual { min-height: 200px; }
   .story-body { padding: 28px 24px; }
   .values-section {
     grid-template-columns: 1fr;
