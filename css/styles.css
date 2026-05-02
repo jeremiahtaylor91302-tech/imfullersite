@@ -161,6 +161,26 @@ a.nav-wordmark {
   opacity: 0;
   animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
 }
+
+/* After waitlist submit: hero is only the confirmation line */
+.hero.hero--waitlist-sent .hero-eyebrow,
+.hero.hero--waitlist-sent .hero-headline,
+.hero.hero--waitlist-sent .hero-body {
+  display: none !important;
+}
+.hero.hero--waitlist-sent {
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+.hero.hero--waitlist-sent .form-container {
+  margin-top: 0;
+  animation: none;
+  opacity: 1;
+}
+.hero.hero--waitlist-sent .form-success {
+  padding: 24px 0 8px;
+}
+
 /* Email */
 .form-container {
   max-width: 460px;

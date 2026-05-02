@@ -11,6 +11,7 @@ const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
   const pill = document.getElementById('formPill');
   const success = document.getElementById('formSuccess');
   const formError = document.getElementById('formError');
+  const hero = form ? form.closest('.hero') : null;
 
   if (!form || !btn || !input) return;
 
@@ -45,6 +46,8 @@ const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
       btn.disabled = false;
       btn.removeAttribute('aria-busy');
       btn.textContent = defaultBtnLabel;
+      if (hero) hero.classList.add('hero--waitlist-sent');
+      if (form) form.style.display = 'none';
       if (success) {
         success.classList.add('show');
         success.style.opacity = '0';
