@@ -42,11 +42,15 @@
       </h1>
       <p class="hero-body">you open it. it tells you what to make tonight.</p>
       <div class="form-container">
-        <div class="form-pill" id="formPill">
-          <label class="visually-hidden" for="emailInput">Email address</label>
-          <input type="email" class="form-input" id="emailInput" name="email" autocomplete="email" placeholder="Your email" inputmode="email">
-          <button type="button" class="form-btn" id="formBtn">Tell me when</button>
-        </div>
+        <form id="waitlistForm" class="waitlist-form" action="https://formspree.io/f/xojrvzaj" method="post">
+          <input type="hidden" name="_subject" value="imfuller waitlist">
+          <input type="text" name="_gotcha" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="form-pill" id="formPill">
+            <label class="visually-hidden" for="emailInput">Email address</label>
+            <input type="email" class="form-input" id="emailInput" name="email" autocomplete="email" placeholder="Your email" inputmode="email" required>
+            <button type="submit" class="form-btn" id="formBtn">Tell me when</button>
+          </div>
+        </form>
         <div class="form-success" id="formSuccess" role="status" aria-live="polite">
           <p class="form-success-text">Noted. We'll whisper when the room's ready.</p>
         </div>

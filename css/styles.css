@@ -168,6 +168,9 @@ a.nav-wordmark {
   opacity: 0;
   animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
 }
+.waitlist-form {
+  display: contents;
+}
 .form-pill {
   display: flex;
   align-items: center;
