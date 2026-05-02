@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Open Fuller: one elevated dinner, pour suggested—real kitchens, never slop. Not tonight? What else you got?">
+  <meta name="theme-color" content="#FDFAF5">
+  <meta property="og:title" content="Fuller">
+  <meta property="og:description" content="Where food gets fuller. One dish at a time—until you're ready to ask what else they've got.">
+  <meta property="og:type" content="website">
+  <title>Fuller</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html" class="nav-wordmark">Fuller</a>
+      <div class="nav-right">
+        <a href="#story" class="nav-link">Go on</a>
+        <a href="#waitlist" class="nav-cta">Save my place</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="waitlist" aria-labelledby="hero-heading">
+      <p class="hero-eyebrow">The ideas come to you</p>
+      <h1 class="hero-headline" id="hero-heading">
+        <span class="line1">Where food gets</span>
+        <span class="line2">fuller.</span>
+      </h1>
+      <p class="hero-body">you open it. it tells you what to make tonight. chef-inspired, never the same thing twice.</p>
+      <div class="form-container">
+        <div class="form-pill" id="formPill">
+          <label class="visually-hidden" for="emailInput">Email address</label>
+          <input type="email" class="form-input" id="emailInput" name="email" autocomplete="email" placeholder="Your email" inputmode="email">
+          <button type="button" class="form-btn" id="formBtn">Tell me when</button>
+        </div>
+        <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+          <p class="form-success-text">Noted. We'll whisper when the room's ready.</p>
+        </div>
+        <p class="form-note">Almost. Not another mid recipe app.</p>
+        <p class="form-error" id="formError" role="alert" hidden></p>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true"><div class="divider-line"></div></div>
+
+    <section class="story-section" id="story" aria-labelledby="story-heading">
+      <p class="story-eyebrow">Between courses</p>
+      <h2 class="visually-hidden" id="story-heading">Preview dish</h2>
+      <div class="story-card">
+        <div class="story-visual">
+          <span class="story-tag">Featured</span>
+        </div>
+        <div class="story-body">
+          <h3 class="story-title">Sunday Roast</h3>
+          <p class="story-attribution">by Rupert M.</p>
+          <p class="story-text">Sunday roasts are non-negotiable in this house. The secret is patience — and never skipping the Yorkshire puddings.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="values-section" aria-label="How Fuller works">
+      <div class="value-card">
+        <div class="value-num">01</div>
+        <div class="value-title">Real</div>
+        <div class="value-desc">every recipe started in someone's kitchen. a real person, a real dish, a reason it stuck.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">02</div>
+        <div class="value-title">Effortless</div>
+        <div class="value-desc">open it. tonight's dinner is already waiting. you just have to say yes.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-num">03</div>
+        <div class="value-title">Elevated</div>
+        <div class="value-desc">the wine is paired. the ingredient that matters most is marked. the rest is you.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-rule"></div>
+    <div class="footer-row">
+      <span class="footer-left">Fuller © 2026</span>
+      <span class="footer-right">Impress yourself tonight.</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
