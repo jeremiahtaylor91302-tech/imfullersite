@@ -225,16 +225,6 @@ a.nav-wordmark {
   box-shadow: none;
 }
 
-.form-note {
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--driftwood);
-  margin-top: 16px;
-  letter-spacing: 0.01em;
-  opacity: 0;
-  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
-}
-
 .form-error {
   font-size: 12px;
   font-weight: 400;
@@ -646,7 +636,6 @@ body.waitlist-prank {
   .hero-headline,
   .hero-body,
   .form-container,
-  .form-note,
   .story-section,
   .values-section {
     animation: none;
