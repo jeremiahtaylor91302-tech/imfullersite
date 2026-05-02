@@ -248,56 +248,97 @@ a.nav-wordmark {
 
 /* ---- STORY ---- */
 .story-section {
+  --chit-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   max-width: min(720px, 100%);
   margin: 0 auto;
-  padding: 56px 56px 48px;
+  padding: 68px 56px 48px;
   opacity: 0;
   animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.9s forwards;
 }
-.story-eyebrow {
-  display: table;
-  margin: 0 auto 20px;
-  padding: 7px 16px;
-  font-family: 'Karla', sans-serif;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--walnut);
-  background: var(--warm-white);
-  border: 1px solid var(--oat);
-  border-radius: 100px;
-  text-align: center;
+
+/* Kitchen pass: rail + thermal strip, slight hang */
+.story-pass {
+  position: relative;
+  max-width: 100%;
+  padding-top: 11px;
+  transform: rotate(-1.15deg);
+  transform-origin: 50% 0;
+  transition: transform 0.45s ease, filter 0.45s ease;
 }
-.story-card {
-  background: var(--ivory);
-  border: 1px solid var(--oat);
-  border-radius: 20px;
-  padding: 6px;
-  transition: box-shadow 0.4s;
+.story-pass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 8px;
+  border-radius: 3px;
+  z-index: 2;
+  background: linear-gradient(
+    180deg,
+    #f2f0ec 0%,
+    #d8d4ce 38%,
+    #b8b3ab 72%,
+    #9a958e 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(42, 37, 32, 0.14),
+    0 10px 22px -4px rgba(42, 37, 32, 0.22),
+    0 3px 8px rgba(42, 37, 32, 0.14);
 }
-.story-card:hover {
-  box-shadow: 0 16px 48px rgba(42, 37, 32, 0.08);
+.story-pass:hover {
+  transform: rotate(-0.85deg) translateY(-3px);
+  filter: brightness(1.01);
 }
 
-/* Receipt chit (white ticket on cream frame) */
+.story-card {
+  position: relative;
+  z-index: 1;
+  margin-top: -2px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Thermal receipt strip */
 .story-chit {
-  background: var(--warm-white);
-  border: 1px solid rgba(196, 184, 166, 0.55);
-  border-radius: 14px;
-  padding: clamp(18px, 4vw, 28px) clamp(16px, 3.5vw, 28px) clamp(22px, 4vw, 30px);
+  position: relative;
   max-width: 100%;
   overflow: hidden;
+  padding: clamp(20px, 4vw, 30px) clamp(16px, 3.5vw, 28px) clamp(22px, 4vw, 32px);
+  padding-top: clamp(22px, 4.2vw, 32px);
+  border-radius: 4px 4px 5px 5px;
+  border: 1px solid rgba(196, 184, 166, 0.45);
+  background-color: var(--warm-white);
+  background-image:
+    linear-gradient(118deg, rgba(255, 255, 255, 0.35) 0%, transparent 45%),
+    linear-gradient(rgba(42, 37, 32, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42, 37, 32, 0.012) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(253, 250, 245, 0.5) 0%, transparent 28%);
+  background-size:
+    100% 100%,
+    100% 5px,
+    4px 100%,
+    100% 100%;
+  background-repeat: no-repeat, repeat, repeat, no-repeat;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    18px 32px 56px -12px rgba(42, 37, 32, 0.16),
+    6px 12px 24px -6px rgba(42, 37, 32, 0.1),
+    1px 2px 0 rgba(42, 37, 32, 0.05);
 }
 .story-chit-label {
   margin: 0 0 14px;
-  font-family: 'Karla', sans-serif;
-  font-size: 10px;
+  font-family: var(--chit-mono);
+  font-size: 9px;
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--walnut);
-  opacity: 0.88;
+  opacity: 0.9;
 }
 .story-chit-head {
   text-align: center;
@@ -305,7 +346,7 @@ a.nav-wordmark {
 }
 .story-chit-brand {
   margin: 0 0 6px;
-  font-family: 'Karla', sans-serif;
+  font-family: 'Newsreader', serif;
   font-size: clamp(13px, 2.4vw, 15px);
   font-weight: 500;
   letter-spacing: 0.42em;
@@ -314,11 +355,11 @@ a.nav-wordmark {
 }
 .story-chit-subline {
   margin: 0;
-  font-family: 'Newsreader', serif;
-  font-size: clamp(13px, 2.5vw, 15px);
+  font-family: var(--chit-mono);
+  font-size: clamp(11px, 2vw, 12px);
   font-weight: 400;
   font-style: normal;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: lowercase;
   color: var(--driftwood);
 }
@@ -326,7 +367,8 @@ a.nav-wordmark {
   margin: 16px 0;
   border: none;
   height: 1px;
-  background: var(--oat);
+  background: linear-gradient(90deg, transparent, var(--oat) 8%, var(--oat) 92%, transparent);
+  opacity: 0.95;
 }
 .story-chit-lines {
   margin: 0;
@@ -351,37 +393,37 @@ a.nav-wordmark {
 }
 .story-chit-lines dt {
   margin: 0;
-  font-family: 'Newsreader', serif;
-  font-size: clamp(13px, 2.4vw, 15px);
+  font-family: var(--chit-mono);
+  font-size: clamp(12px, 2.1vw, 13px);
   font-weight: 400;
   font-style: italic;
   text-transform: lowercase;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
   color: var(--ink);
-  line-height: 1.35;
+  line-height: 1.4;
 }
 .story-chit-lines dd {
   margin: 0;
-  font-family: 'Karla', sans-serif;
-  font-size: clamp(12px, 2.2vw, 14px);
+  font-family: var(--chit-mono);
+  font-size: clamp(11px, 2vw, 12px);
   font-weight: 400;
   font-style: normal;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   color: var(--driftwood);
   text-align: right;
-  line-height: 1.35;
+  line-height: 1.4;
 }
 .chit-value-accent {
   color: var(--rosewood);
-  font-weight: 500;
+  font-weight: 600;
 }
 .story-chit-lines--summary dt {
   font-style: normal;
   text-transform: lowercase;
 }
 .story-chit-lines--summary dd {
-  font-family: 'Newsreader', serif;
-  font-size: clamp(13px, 2.4vw, 15px);
+  font-family: var(--chit-mono);
+  font-size: clamp(11px, 2vw, 12px);
   font-style: italic;
   color: var(--walnut);
   max-width: min(20rem, 52vw);
@@ -389,10 +431,10 @@ a.nav-wordmark {
 .story-chit-footer {
   margin: 20px 0 0;
   text-align: center;
-  font-family: 'Newsreader', serif;
-  font-size: 11px;
+  font-family: var(--chit-mono);
+  font-size: 10px;
   font-weight: 400;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: lowercase;
   color: var(--driftwood);
   opacity: 0.92;
@@ -568,9 +610,14 @@ body.waitlist-prank {
   .nav-right { gap: 16px; }
   .nav-link { display: none; }
   .hero { padding: 52px 24px 56px; }
-  .story-section { padding: 44px 20px 36px; }
-  .story-card { padding: 5px; border-radius: 18px; }
-  .story-chit { border-radius: 12px; }
+  .story-section { padding: 56px 20px 36px; }
+  .story-pass::before {
+    left: 6%;
+    right: 6%;
+  }
+  .story-chit {
+    border-radius: 3px 3px 4px 4px;
+  }
   .chit-row {
     grid-template-columns: minmax(0, 1fr) minmax(0, auto);
     gap: 8px 12px;
@@ -654,5 +701,12 @@ body.waitlist-prank {
   body::after {
     animation: none;
     opacity: 0.72;
+  }
+
+  .story-pass,
+  .story-pass:hover {
+    transform: none;
+    filter: none;
+    transition: none;
   }
 }
