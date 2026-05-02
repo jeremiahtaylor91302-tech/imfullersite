@@ -30,6 +30,10 @@ function hideError() {
   formError.textContent = '';
 }
 
+function prefersReducedMotion() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
 function showSuccessUI() {
   pill.style.opacity = '0';
   pill.style.transform = 'translateY(-8px)';
@@ -45,6 +49,31 @@ function showSuccessUI() {
       success.style.transform = 'translateY(0)';
     });
   }, 350);
+}
+
+function runPrankThenSuccess() {
+  const overlay = document.getElementById('prankOverlay');
+  document.body.classList.add('waitlist-prank');
+  if (overlay) {
+    overlay.classList.add('is-on');
+    overlay.setAttribute('aria-hidden', 'false');
+  }
+  window.setTimeout(() => {
+    document.body.classList.remove('waitlist-prank');
+    if (overlay) {
+      overlay.classList.remove('is-on');
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+    showSuccessUI();
+  }, 1350);
+}
+
+function onWaitlistSuccess() {
+  if (prefersReducedMotion()) {
+    showSuccessUI();
+    return;
+  }
+  runPrankThenSuccess();
 }
 
 function showInvalidEmail() {
@@ -68,7 +97,7 @@ btn.addEventListener('click', async () => {
 
   const formId = FORMSPREE_FORM_ID.trim();
   if (!formId) {
-    showSuccessUI();
+    onWaitlistSuccess();
     return;
   }
 
@@ -95,7 +124,7 @@ btn.addEventListener('click', async () => {
       throw new Error(typeof msg === 'string' ? msg : "Couldn't save that. Try again.");
     }
 
-    showSuccessUI();
+    onWaitlistSuccess();
   } catch {
     showError("Couldn't save that. Try again in a moment.");
     btn.disabled = false;

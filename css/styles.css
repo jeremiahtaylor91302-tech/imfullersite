@@ -182,12 +182,24 @@ a.nav-wordmark {
   border: none;
   border-radius: 100px;
   cursor: pointer;
-  transition: all 0.35s;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   white-space: nowrap;
 }
-.form-btn:hover {
-  background: var(--umber);
+.form-btn:hover:not(:disabled) {
+  background: var(--walnut);
   color: var(--ivory);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(42, 37, 32, 0.22);
+}
+.form-btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(42, 37, 32, 0.12);
+}
+.form-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .form-note {
@@ -408,6 +420,60 @@ footer {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes prankWobble {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0); }
+  18% { transform: translate3d(-4px, 2px, 0) rotate(-1deg); }
+  36% { transform: translate3d(4px, -2px, 0) rotate(1deg); }
+  54% { transform: translate3d(-3px, -2px, 0) rotate(-0.6deg); }
+  72% { transform: translate3d(3px, 2px, 0) rotate(0.6deg); }
+}
+
+@keyframes prankOverlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+body.waitlist-prank {
+  animation: prankWobble 0.85s ease-in-out;
+}
+
+.prank-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: rgba(42, 37, 32, 0.92);
+  text-align: center;
+}
+.prank-overlay.is-on {
+  display: flex;
+  animation: prankOverlayIn 0.22s ease forwards;
+}
+
+.prank-overlay-title {
+  font-family: 'Newsreader', serif;
+  font-size: clamp(1.2rem, 3.2vw, 1.55rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ivory);
+  line-height: 1.45;
+  max-width: 22em;
+  margin: 0 auto 14px;
+}
+
+.prank-overlay-sub {
+  font-family: 'Karla', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  color: rgba(253, 250, 245, 0.78);
+  max-width: 28em;
+  margin: 0 auto;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -493,5 +559,13 @@ footer {
     animation: none;
     opacity: 1;
     transform: none;
+  }
+
+  body.waitlist-prank {
+    animation: none;
+  }
+
+  .prank-overlay.is-on {
+    animation: none;
   }
 }
