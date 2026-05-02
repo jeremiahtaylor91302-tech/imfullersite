@@ -280,7 +280,7 @@ a.nav-wordmark {
   text-align: center;
 }
 .story-card {
-  background: var(--warm-white);
+  background: var(--ivory);
   border: 1px solid var(--oat);
   border-radius: 20px;
   padding: 6px;
@@ -289,69 +289,127 @@ a.nav-wordmark {
 .story-card:hover {
   box-shadow: 0 16px 48px rgba(42, 37, 32, 0.08);
 }
-.story-card-inner {
-  background: var(--ivory);
-  border: 1px solid rgba(196, 184, 166, 0.45);
+
+/* Receipt chit (white ticket on cream frame) */
+.story-chit {
+  background: var(--warm-white);
+  border: 1px solid rgba(196, 184, 166, 0.55);
   border-radius: 14px;
+  padding: clamp(18px, 4vw, 28px) clamp(16px, 3.5vw, 28px) clamp(22px, 4vw, 30px);
+  max-width: 100%;
   overflow: hidden;
 }
-.story-header {
-  padding: 28px 28px 22px;
-  border-bottom: 1px solid var(--oat);
-  background: linear-gradient(165deg, var(--warm-white) 0%, var(--ivory) 55%);
-}
-.story-title {
-  font-family: 'Newsreader', serif;
-  font-size: clamp(1.65rem, 4.2vw, 2.125rem);
-  font-weight: 500;
-  line-height: 1.15;
-  color: var(--ink);
-  margin: 0 0 10px;
-  letter-spacing: -0.01em;
-}
-.story-attribution {
-  margin: 0;
+.story-chit-label {
+  margin: 0 0 14px;
   font-family: 'Karla', sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--rosewood);
+  color: var(--walnut);
+  opacity: 0.88;
 }
-.story-body {
-  padding: 26px 28px 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.125rem;
+.story-chit-head {
+  text-align: center;
+  margin: 0 0 4px;
 }
-.story-lead,
-.story-mid {
+.story-chit-brand {
+  margin: 0 0 6px;
+  font-family: 'Karla', sans-serif;
+  font-size: clamp(13px, 2.4vw, 15px);
+  font-weight: 500;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.story-chit-subline {
+  margin: 0;
   font-family: 'Newsreader', serif;
-  font-size: clamp(0.98rem, 2.6vw, 1.0625rem);
+  font-size: clamp(13px, 2.5vw, 15px);
   font-weight: 400;
   font-style: normal;
-  line-height: 1.78;
-  color: var(--ink);
-  max-width: 52ch;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: var(--driftwood);
+}
+.story-chit-rule {
+  margin: 16px 0;
+  border: none;
+  height: 1px;
+  background: var(--oat);
+}
+.story-chit-lines {
   margin: 0;
+  padding: 0;
 }
-.story-mid {
-  color: var(--ink);
+.story-chit-lines--summary {
+  margin-top: 0;
 }
-.story-emphasis {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--ink);
+.chit-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px 16px;
+  align-items: baseline;
+  margin: 0;
+  padding: 8px 0;
 }
-.story-coda {
+.chit-row:first-child {
+  padding-top: 2px;
+}
+.chit-row:last-child {
+  padding-bottom: 2px;
+}
+.story-chit-lines dt {
+  margin: 0;
   font-family: 'Newsreader', serif;
-  font-size: clamp(1rem, 2.8vw, 1.125rem);
+  font-size: clamp(13px, 2.4vw, 15px);
   font-weight: 400;
   font-style: italic;
-  line-height: 1.65;
+  text-transform: lowercase;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.story-chit-lines dd {
+  margin: 0;
+  font-family: 'Karla', sans-serif;
+  font-size: clamp(12px, 2.2vw, 14px);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  color: var(--driftwood);
+  text-align: right;
+  line-height: 1.35;
+}
+.chit-value-accent {
   color: var(--rosewood);
-  margin: 4px 0 0;
-  max-width: 52ch;
+  font-weight: 500;
+}
+.story-chit-lines--summary dt {
+  font-style: normal;
+  text-transform: lowercase;
+}
+.story-chit-lines--summary dd {
+  font-family: 'Newsreader', serif;
+  font-size: clamp(13px, 2.4vw, 15px);
+  font-style: italic;
+  color: var(--walnut);
+  max-width: min(20rem, 52vw);
+}
+.story-chit-footer {
+  margin: 20px 0 0;
+  text-align: center;
+  font-family: 'Newsreader', serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  color: var(--driftwood);
+  opacity: 0.92;
+}
+.story-chit-footer em {
+  font-style: italic;
+  font-weight: 400;
 }
 
 /* ---- VALUES ---- */
@@ -522,9 +580,14 @@ body.waitlist-prank {
   .hero { padding: 52px 24px 56px; }
   .story-section { padding: 44px 20px 36px; }
   .story-card { padding: 5px; border-radius: 18px; }
-  .story-card-inner { border-radius: 12px; }
-  .story-header { padding: 22px 20px 18px; }
-  .story-body { padding: 22px 20px 26px; gap: 1rem; }
+  .story-chit { border-radius: 12px; }
+  .chit-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, auto);
+    gap: 8px 12px;
+  }
+  .story-chit-lines--summary dd {
+    max-width: none;
+  }
   .values-section {
     grid-template-columns: 1fr;
     max-width: 340px;
