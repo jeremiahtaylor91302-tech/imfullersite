@@ -38,6 +38,30 @@ body::before {
   z-index: 999;
 }
 
+/* Warm edge vignette — sits under grain */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 998;
+  background: radial-gradient(
+    ellipse 90% 82% at 50% 46%,
+    transparent 0%,
+    transparent 40%,
+    rgba(107, 94, 78, 0.08) 68%,
+    rgba(74, 63, 52, 0.16) 88%,
+    rgba(42, 37, 32, 0.12) 100%
+  );
+  opacity: 0.72;
+  animation: vignetteBreath 11s ease-in-out infinite alternate;
+}
+
+@keyframes vignetteBreath {
+  from { opacity: 0.58; }
+  to { opacity: 0.88; }
+}
+
 /* ---- NAV ---- */
 .site-nav {
   display: flex;
@@ -567,5 +591,10 @@ body.waitlist-prank {
 
   .prank-overlay.is-on {
     animation: none;
+  }
+
+  body::after {
+    animation: none;
+    opacity: 0.72;
   }
 }
