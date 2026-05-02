@@ -138,6 +138,12 @@ a.nav-wordmark {
   opacity: 0;
   animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
 }
+.hero-body-line {
+  display: block;
+}
+.hero-body-line + .hero-body-line {
+  margin-top: 0.22em;
+}
 /* Email */
 .form-container {
   max-width: 460px;
