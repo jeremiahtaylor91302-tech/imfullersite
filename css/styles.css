@@ -131,12 +131,18 @@ a.nav-wordmark {
   font-size: 18px;
   font-weight: 400;
   font-style: italic;
-  line-height: 1.8;
+  line-height: 1.65;
   color: var(--walnut);
-  max-width: 480px;
+  max-width: 520px;
   margin: 0 auto 52px;
   opacity: 0;
   animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+}
+.hero-body-line {
+  display: block;
+}
+.hero-body-line + .hero-body-line {
+  margin-top: 0.2em;
 }
 
 /* Email */
