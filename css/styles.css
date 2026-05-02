@@ -311,8 +311,11 @@ a.nav-wordmark {
   line-height: 1.75;
   color: var(--umber);
   position: relative;
-  padding-left: 20px;
-  border-left: 2px solid var(--oat);
+  text-align: center;
+  max-width: 36em;
+  margin-inline: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--oat);
 }
 
 /* ---- VALUES ---- */
